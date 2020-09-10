@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_infinite_list/models/models.dart';
+import 'package:flutter_infinite_list/models/post.dart';
 
 abstract class PostState extends Equatable {
   const PostState();
@@ -10,7 +10,7 @@ abstract class PostState extends Equatable {
 
 class PostInitial extends PostState {}
 
-class PostFaiure extends PostState{}
+class PostFailure extends PostState{}
 
 class PostSuccess extends PostState {
   final List<Post> posts;

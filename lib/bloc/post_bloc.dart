@@ -1,7 +1,11 @@
+import 'dart:async';
+import 'dart:convert';
+
 import 'package:flutter_infinite_list/models/post.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
+import 'package:rxdart/rxdart.dart';
 
 import 'package:flutter_infinite_list/bloc/bloc.dart';
 
@@ -52,7 +56,18 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         );
       }).toList();
     } else {
-      Throw Exception('error fetching posts');
+      throw Exception('error fetching posts');
     }
+  }
+
+  @override
+  Stream<Transition<PostEvent, PostState>> transformEvents(
+    Stream<PostEvent> events,
+    TransitionFunction<PostEvent, PostState> transitionFn,
+  ) {
+    return super.transformEvents(
+      events.debounceTime(const Duration(milliseconds: 500)),
+      transitionFn,
+    );
   }
 }
