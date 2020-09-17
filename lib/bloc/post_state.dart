@@ -10,7 +10,7 @@ abstract class PostState extends Equatable {
 
 class PostInitial extends PostState {}
 
-class PostFailure extends PostState{}
+class PostFailure extends PostState {}
 
 class PostSuccess extends PostState {
   final List<Post> posts;
@@ -30,4 +30,11 @@ class PostSuccess extends PostState {
       hasReachedMax: hasReachedMax ?? this.hasReachedMax,
     );
   }
+
+  @override
+  List<Object> get props => [posts, hasReachedMax];
+
+  @override
+  String toString() =>
+      'PostSuccess { posts: ${posts.length}, hasReachedMax: $hasReachedMax }';
 }

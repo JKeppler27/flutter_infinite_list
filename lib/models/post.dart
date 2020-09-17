@@ -11,5 +11,5 @@ class Post extends Equatable{
   List<Object> get props => [id, title, body];
 
   @override
-  String toString() => 'Pst {id: $id }';
+  String toString() => 'Post {id: $id }';
 }
